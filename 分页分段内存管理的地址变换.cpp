@@ -6,15 +6,15 @@
 #include<iomanip>
 using namespace std;
 struct Page{
-	int PageSize;		//Ò³Ãæ´óĞ¡ 
-	int Pagedeviation;	//Ò³ÄÚÆ«ÒÆÁ¿
-	int Pagecount;		//Ò³±íÏî¸öÊı
-	int block[10];		//¿éºÅÊı×é  
+	int PageSize;		//é¡µé¢å¤§å° 
+	int Pagedeviation;	//é¡µå†…åç§»é‡
+	int Pagecount;		//é¡µè¡¨é¡¹ä¸ªæ•°
+	int block[10];		//å—å·æ•°ç»„  
 };
 struct Segment{
-	float length[10];		//¶Î³¤
-	int address[10];	//»ùÖ·
-	int Segmentcount;	//¶Î±íÏî¸öÊı
+	float length[10];		//æ®µé•¿
+	int address[10];	//åŸºå€
+	int Segmentcount;	//æ®µè¡¨é¡¹ä¸ªæ•°
 	 
 };
 Segment segment;
@@ -26,13 +26,13 @@ bool in_range(int x, int a, int b)
 }
 void Rand1()
 {
-	srand((unsigned)time(NULL));   //Ëæ»úÊıÖÖ×Ó
+	srand((unsigned)time(NULL));   //éšæœºæ•°ç§å­
         
     for (int i = 0; i < 10; i++)
     {
-      int   x = rand() % 10;           //²úÉú0µ½9µÄËæ»úÊı
+      int   x = rand() % 10;           //äº§ç”Ÿ0åˆ°9çš„éšæœºæ•°
         for (int j = 0; j < i; j++)
-            while (x == page.block[j])      //Èç¹ûxÓëÇ°ÃæµÄÊıÏàÍ¬£¬ÔòÔÙÕÒÒ»¸öÊı
+            while (x == page.block[j])      //å¦‚æœxä¸å‰é¢çš„æ•°ç›¸åŒï¼Œåˆ™å†æ‰¾ä¸€ä¸ªæ•°
             {
                 x = rand() % 10;
                 j = 0;
@@ -46,10 +46,10 @@ bool PageMethod()
 	int logicAddress;
 	int physicAddress;
 	int flag1=0,flag2=0;
-	int pin=1;		//ÓÃÀ´ÅĞ¶Ï¿éºÅÊÇ·ñÖØ¸´ 
-	cout<<"ÇëÊäÈëÃ¿Ò³´óĞ¡£º£¨0-1K£»1-2K£»2-4K£»3-Ëæ»úÑ¡Ôñ£©"<<endl;
+	int pin=1;		//ç”¨æ¥åˆ¤æ–­å—å·æ˜¯å¦é‡å¤ 
+	cout<<"è¯·è¾“å…¥æ¯é¡µå¤§å°ï¼šï¼ˆ0-1Kï¼›1-2Kï¼›2-4Kï¼›3-éšæœºé€‰æ‹©ï¼‰"<<endl;
 		cin>>flag1;
-		srand((unsigned)time(NULL));   //Ëæ»úÊıÖÖ×Ó
+		srand((unsigned)time(NULL));   //éšæœºæ•°ç§å­
 		if(flag1==3)
 		{
 			flag1=rand()%3;
@@ -64,14 +64,14 @@ bool PageMethod()
 		{
 			page.PageSize=4096;
 		}
-//		cout<<"Ò³Ãæ´óĞ¡Îª£º"<<page.PageSize<<endl;
+//		cout<<"é¡µé¢å¤§å°ä¸ºï¼š"<<page.PageSize<<endl;
 
-	cout<<"ÇëÊäÈëÒ³±íÏî¸öÊı£º£¨5µ½10Ö®¼äÕûÊı£¬º¬¶Ëµã£©"<<endl;
+	cout<<"è¯·è¾“å…¥é¡µè¡¨é¡¹ä¸ªæ•°ï¼šï¼ˆ5åˆ°10ä¹‹é—´æ•´æ•°ï¼Œå«ç«¯ç‚¹ï¼‰"<<endl;
 	cin>>page.Pagecount;
 	while(pin==1)
 {
 
-	cout<<"ÇëÊäÈëÒ³±íÖĞÃ¿Ò³¶ÔÓ¦µÄ¿éºÅ£º£¨0-ÊÖ¶¯ÊäÈë£»1-Ëæ»úÉú³É0ÖÁ10Ö®¼äµÄ·ÇÖØ¸´ÕûÊı×÷Îª¿éºÅ£©"<<endl;
+	cout<<"è¯·è¾“å…¥é¡µè¡¨ä¸­æ¯é¡µå¯¹åº”çš„å—å·ï¼šï¼ˆ0-æ‰‹åŠ¨è¾“å…¥ï¼›1-éšæœºç”Ÿæˆ0è‡³10ä¹‹é—´çš„éé‡å¤æ•´æ•°ä½œä¸ºå—å·ï¼‰"<<endl;
 	cin>>flag2;
 	if(flag2==0)
 	{
@@ -79,7 +79,7 @@ bool PageMethod()
 		{
 			cin>>page.block[i];	
 		}
-		//ĞèÅĞ¶ÏÓĞÎŞ¿éºÅÖØ¸´
+		//éœ€åˆ¤æ–­æœ‰æ— å—å·é‡å¤
 		for(int i=0;i<page.Pagecount;i++)
 		{
 			int tmp=page.block[i];
@@ -88,7 +88,7 @@ bool PageMethod()
 			{
 				if(tmp==page.block[j])
 				{
-					cout<<"ÄúÊäÈëµÄ¿éºÅÓĞÎó£¬ÓëµÚ"<<i<<"ºÅÒ³ÃæÊäÈëµÄ¿éºÅÖØ¸´£¬ÇëÖØĞÂÊäÈëµÚ"<<j<<"ºÅÒ³Ãæ¶ÔÓ¦µÄ¿éºÅ£¡"<<endl;
+					cout<<"æ‚¨è¾“å…¥çš„å—å·æœ‰è¯¯ï¼Œä¸ç¬¬"<<i<<"å·é¡µé¢è¾“å…¥çš„å—å·é‡å¤ï¼Œè¯·é‡æ–°è¾“å…¥ç¬¬"<<j<<"å·é¡µé¢å¯¹åº”çš„å—å·ï¼"<<endl;
 					pin1=1;
 					break;
 				}
@@ -108,10 +108,10 @@ bool PageMethod()
 		pin=0;
 	}
 }
-	//Êä³ö³õÊ¼»¯Êı¾İ
- 	cout<<"ÄúÑ¡ÔñÁË·ÖÒ³·½Ê½£¬ÊäÈëµÄÊı¾İÈçÏÂ£º"<<endl;
- 	cout<<"Ã¿Ò³´óĞ¡"<<page.PageSize/1024<<"K,Ò³±íÎª"<<endl;
- 	cout<<"Ò³ºÅ    ¿éºÅ"<<endl;
+	//è¾“å‡ºåˆå§‹åŒ–æ•°æ®
+ 	cout<<"æ‚¨é€‰æ‹©äº†åˆ†é¡µæ–¹å¼ï¼Œè¾“å…¥çš„æ•°æ®å¦‚ä¸‹ï¼š"<<endl;
+ 	cout<<"æ¯é¡µå¤§å°"<<page.PageSize/1024<<"K,é¡µè¡¨ä¸º"<<endl;
+ 	cout<<"é¡µå·    å—å·"<<endl;
  	for(int i=0;i<page.Pagecount;i++)
  	{
  		std::cout<<std::left<<std::setw(3)<<i<<"\t";
@@ -119,20 +119,20 @@ bool PageMethod()
 	 	cout<<endl;
 	}
    //
-	cout<<"ÇëÊäÈëÂß¼­µØÖ·£º";
+	cout<<"è¯·è¾“å…¥é€»è¾‘åœ°å€ï¼š";
 	cin>>logicAddress;
-	int p=logicAddress/page.PageSize;					//Ò³ºÅ 
-	page.Pagedeviation=logicAddress%page.PageSize;		//ËãÒ³Æ«
-	int b=page.block[p];								//Ëã¿éºÅ
+	int p=logicAddress/page.PageSize;					//é¡µå· 
+	page.Pagedeviation=logicAddress%page.PageSize;		//ç®—é¡µå
+	int b=page.block[p];								//ç®—å—å·
 	physicAddress=b*page.PageSize+page.Pagedeviation;
-//	cout<<"×ÜÄÚ´æÎª£º"<<page.PageSize*page.Pagecount<<endl;
+//	cout<<"æ€»å†…å­˜ä¸ºï¼š"<<page.PageSize*page.Pagecount<<endl;
 	if(logicAddress>page.PageSize*page.Pagecount){
-		cout<<"ÄúÊäÈëµÄµØÖ·ÒÑÒç³ö£¬ÇëÖØĞÂÊäÈë£¡"<<endl;
+		cout<<"æ‚¨è¾“å…¥çš„åœ°å€å·²æº¢å‡ºï¼Œè¯·é‡æ–°è¾“å…¥ï¼"<<endl;
 		return false;
 	}else{
-	cout<<"ÄúÑ¡ÔñÁË·ÖÒ³·½Ê½£¬ÊäÈëµÄÂß¼­µØÖ·Îª"<<logicAddress<<",Æä¶ÔÓ¦µÄÒ³ºÅÎª"<<p<<",Ò³Æ«ÒÆÎª"<<page.Pagedeviation<<",¸ÃµØÖ·¶ÔÓ¦µÄ¿éºÅÎª"<<b<<",¿éÆ«ÒÆÎª"<<page.Pagedeviation<<",ÎïÀíµØÖ·Îª"<<physicAddress<<endl;
+	cout<<"æ‚¨é€‰æ‹©äº†åˆ†é¡µæ–¹å¼ï¼Œè¾“å…¥çš„é€»è¾‘åœ°å€ä¸º"<<logicAddress<<",å…¶å¯¹åº”çš„é¡µå·ä¸º"<<p<<",é¡µåç§»ä¸º"<<page.Pagedeviation<<",è¯¥åœ°å€å¯¹åº”çš„å—å·ä¸º"<<b<<",å—åç§»ä¸º"<<page.Pagedeviation<<",ç‰©ç†åœ°å€ä¸º"<<physicAddress<<endl;
 	}
-	cout<<"ÊÇ·ñÒª¼ÌĞø£¿(y/n)"<<endl;
+	cout<<"æ˜¯å¦è¦ç»§ç»­ï¼Ÿ(y/n)"<<endl;
 	char c;
 	cin>>c;
 	if(c=='y')
@@ -141,15 +141,15 @@ bool PageMethod()
 	}else 
 	return true;
 }
-void Rand2(int n)			//»ùÖ·µÄËæ»úÉú³É 
+void Rand2(int n)			//åŸºå€çš„éšæœºç”Ÿæˆ 
 {
-	srand((unsigned)time(NULL));   //Ëæ»úÊıÖÖ×Ó
+	srand((unsigned)time(NULL));   //éšæœºæ•°ç§å­
         
     for (int i = 0; i <	n; i++)
     {
-      int   x = rand() % 100;           //²úÉú0µ½100µÄËæ»úÊı
+      int   x = rand() % 100;           //äº§ç”Ÿ0åˆ°100çš„éšæœºæ•°
         for (int j = 0; j < i; j++)
-            while (x == segment.address[j])      //Èç¹ûxÓëÇ°ÃæµÄÊıÏàÍ¬£¬ÔòÔÙÕÒÒ»¸öÊı
+            while (x == segment.address[j])      //å¦‚æœxä¸å‰é¢çš„æ•°ç›¸åŒï¼Œåˆ™å†æ‰¾ä¸€ä¸ªæ•°
             {
                 x = rand() % 10;
                 j = 0;
@@ -157,13 +157,13 @@ void Rand2(int n)			//»ùÖ·µÄËæ»úÉú³É
         segment.address[i]= x*k;
     }
 }
-void Rand3(int n)				//¶Î³¤µÄËæ»úÉú³É 
+void Rand3(int n)				//æ®µé•¿çš„éšæœºç”Ÿæˆ 
 {
-	srand((unsigned)time(NULL));   //Ëæ»úÊıÖÖ×Ó
+	srand((unsigned)time(NULL));   //éšæœºæ•°ç§å­
 	int a[4]={1,2,4,8}; 
     for (int i = 0; i < n; i++)
     {
-      int   random = rand() * 10%4;           //²úÉú0µ½9µÄËæ»úÊı
+      int   random = rand()%4;           //äº§ç”Ÿ0åˆ°4çš„éšæœºæ•°
 		int x = a[random];
         segment.length[i] = x*k;
     }
@@ -173,16 +173,15 @@ bool SegmentMethod(){
 	int logicAddress;
 	int physicAddress;
 	int flag1,flag2;			
-	cout<<"ÇëÊäÈë¶Î±íÏî¸öÊı£º£¨5µ½10Ö®¼äÕûÊı£¬º¬¶Ëµã£©"<<endl;
+	cout<<"è¯·è¾“å…¥æ®µè¡¨é¡¹ä¸ªæ•°ï¼šï¼ˆ5åˆ°10ä¹‹é—´æ•´æ•°ï¼Œå«ç«¯ç‚¹ï¼‰"<<endl;
 	cin>>segment.Segmentcount;
-	cout<<"ÇëÊäÈëÒ³±íÖĞÃ¿¶Î¶ÔÓ¦µÄ»ùÖ·ºÍ¶Î³¤£º£¨0-ÊÖ¶¯ÊäÈë£»1-Ëæ»úÉú³É£©"<<endl;
+	cout<<"è¯·è¾“å…¥é¡µè¡¨ä¸­æ¯æ®µå¯¹åº”çš„åŸºå€å’Œæ®µé•¿ï¼šï¼ˆ0-æ‰‹åŠ¨è¾“å…¥ï¼›1-éšæœºç”Ÿæˆï¼‰"<<endl;
 	cin>>flag1;
 	if(flag1==0)
 	{
 		for(int i=0;i<segment.Segmentcount;i++)
 		{
 			cin>>segment.address[i]>>segment.length[i];
-			cout<<endl;
 			segment.address[i]*=k;
 			segment.length[i]*=k;
 		}
@@ -191,10 +190,10 @@ bool SegmentMethod(){
 		Rand2(segment.Segmentcount);
 		Rand3(segment.Segmentcount);
 	}
-	//ÅĞ¶Ï»ùÖ·Óë¶Î³¤ÊÇ·ñ³åÍ»
-	int tmp1=0;		//¼ÇÂ¼³åÍ»µÄ¶ÎºÅ
+	//åˆ¤æ–­åŸºå€ä¸æ®µé•¿æ˜¯å¦å†²çª
+	int tmp1=0;		//è®°å½•å†²çªçš„æ®µå·
 	int tmp2=0; 
-	int flag3=1;	//ÅĞ¶Ï³åÍ»µÄ±êÖ¾ 
+	int flag3=1;	//åˆ¤æ–­å†²çªçš„æ ‡å¿— 
 	for(int i=0;i<segment.Segmentcount;i++)
 	{
 		for(int j=i+1;j<segment.Segmentcount;j++)
@@ -229,12 +228,12 @@ bool SegmentMethod(){
 	 } 
 	 if(flag3==0)
 	 {
-	 	cout<<"ÄúÊäÈëµÄÊı¾İÓĞÎó£¬ÓëµÚ"<<tmp1<<"ºÅ·Ö¶Î£¨»ùÖ·"<<segment.address[tmp1]<<"¶Î³¤"<<segment.length[tmp1]<<",ÇëÖØĞÂÊäÈëµÚ"<<tmp2<<"ºÅ·Ö¶Î¶ÔÓ¦µÄ»ùÖ·ºÍ¶Î³¤)"<<endl;
+	 	cout<<"æ‚¨è¾“å…¥çš„æ•°æ®æœ‰è¯¯ï¼Œä¸ç¬¬"<<tmp1<<"å·åˆ†æ®µå†²çªï¼ˆåŸºå€"<<segment.address[tmp1]<<"æ®µé•¿"<<segment.length[tmp1]<<"ï¼‰,è¯·é‡æ–°è¾“å…¥ç¬¬"<<tmp2<<"å·åˆ†æ®µå¯¹åº”çš„åŸºå€å’Œæ®µé•¿)"<<endl;
 	 	return false;
 	 }
-	 //Êä³ö³õÊ¼»¯Êı¾İ
-	 cout<<"ÄúÑ¡ÔñÁË·Ö¶Î·½Ê½£¬ÊäÈëµÄÊı¾İÈçÏÂ:"<<endl;
-	 cout<<"¶ÎºÅ    »ùÖ·    ¶Î³¤"<<endl;
+	 //è¾“å‡ºåˆå§‹åŒ–æ•°æ®
+	 cout<<"æ‚¨é€‰æ‹©äº†åˆ†æ®µæ–¹å¼ï¼Œè¾“å…¥çš„æ•°æ®å¦‚ä¸‹:"<<endl;
+	 cout<<"æ®µå·    åŸºå€    æ®µé•¿"<<endl;
 	 for(int i=0;i<segment.Segmentcount;i++)
 	 {
 	 	std::cout<<std::left<<std::setw(3)<<i<<"\t";
@@ -243,55 +242,58 @@ bool SegmentMethod(){
 	 	cout<<endl;
 	 }
 
-	 //½øĞĞµØÖ·×ª»»
-	cout<<"ÇëÊäÈëÂß¼­µØÖ·£º";
+	 //è¿›è¡Œåœ°å€è½¬æ¢
+	cout<<"è¯·è¾“å…¥é€»è¾‘åœ°å€ï¼š";
 	cin>>logicAddress;
 	int cnt=0;
 	int cnt1=0;
 	int cnt2=0;
-	int b;			//¶ÎºÅ 
-	int segdeviation;	//¶ÎÆ« 
-	//ÅĞ¶ÏÂß¼­µØÖ·ÊÇ·ñ´æÔÚÄÚ´æÖĞ 
+	int b;			//æ®µå· 
+	int segdeviation;	//æ®µå 
+	int sum=0;		//æ®µé•¿å’Œ 
+	//åˆ¤æ–­é€»è¾‘åœ°å€æ˜¯å¦å­˜åœ¨å†…å­˜ä¸­ 
 	for(int i=0;i<segment.Segmentcount;i++)
 	{
-		//Âß¼­µØÖ·¸ßÓÚÈÎÒâµØÖ· 
-		if(logicAddress>segment.address[i]+segment.length[i])
+		sum+=segment.length[i];
+//		cout<<sum<<endl;
+		//é€»è¾‘åœ°å€é«˜äºæ®µé•¿ 
+		if(logicAddress>sum)
 		{
 			cnt++;
 		}
-		//Âß¼­µØÖ·Ğ¡ÓÚÈÎÒâµØÖ· 
-		if(logicAddress<segment.address[i])
-		{
-			cnt1++;
-		}
-		//Âß¼­µØÖ·²»ÔÚÄÚ´æ·¶Î§ÖĞ 
-		if(!in_range(logicAddress,segment.address[i],segment.address[i]+segment.length[i]))
-		{
-			cnt2++;
-		}
 	}
-	if(cnt==segment.Segmentcount||cnt1==segment.Segmentcount||cnt2==segment.Segmentcount)
+	if(cnt==segment.Segmentcount)
 	{
-		cout<<"Âß¼­µØÖ·²»ÔÚÄÚ´æÖĞ,ÖØĞÂÊäÈë£¡"<<endl;
+		cout<<"é€»è¾‘åœ°å€æº¢å‡º,é‡æ–°è¾“å…¥ï¼"<<endl;
 		return false;
 	}
-	
-	//Âß¼­µØÖ·»»Ëã 
+	//é€»è¾‘åœ°å€æ¢ç®— 
+	int p=logicAddress;		//è®°å½•æœ€å¼€å§‹çš„é€»è¾‘åœ°å€ 
+	int tmp;				//é€»è¾‘åœ°å€å˜è´Ÿä¹‹å‰çš„å€¼ 
 	for(int i=0;i<segment.Segmentcount;i++)
 	{
-		if(logicAddress>segment.address[i])
+
+		if(logicAddress>segment.length[i])
 		{
-			if(logicAddress<=segment.address[i]+segment.length[i])
+			tmp=logicAddress;
+			logicAddress-=segment.length[i];
+			if(logicAddress<0)
 			{
+				segdeviation=tmp;
 				b=i;
-				break;		
+				break;
 			}
 		}
+		else
+		{
+			segdeviation=logicAddress;
+			b=i;
+			break;
+		}
 	}
-	segdeviation=logicAddress-segment.address[b];
 	physicAddress=segment.address[b]+segdeviation;
-	cout<<"ÄúÑ¡ÔñÁË·Ö¶Î·½Ê½£¬ÊäÈëµÄÂß¼­µØÖ·Îª"<<logicAddress<<"£¬Æä¶ÔÓ¦µÄ¶ÎºÅÎª"<<b<<"£¬¶ÎÆ«ÒÆÎª"<<segdeviation<<",¸Ã¶Î¶ÔÓ¦µÄ»ùÖ·Îª"<<segment.address[b]<<",ÎïÀíµØÖ·Îª"<<physicAddress<<endl;
-	cout<<"ÊÇ·ñÒª¼ÌĞø£¿(y/n)"<<endl;
+	cout<<"æ‚¨é€‰æ‹©äº†åˆ†æ®µæ–¹å¼ï¼Œè¾“å…¥çš„é€»è¾‘åœ°å€ä¸º"<<p<<"ï¼Œå…¶å¯¹åº”çš„æ®µå·ä¸º"<<b<<"ï¼Œæ®µåç§»ä¸º"<<segdeviation<<",è¯¥æ®µå¯¹åº”çš„åŸºå€ä¸º"<<segment.address[b]<<",ç‰©ç†åœ°å€ä¸º"<<physicAddress<<endl;
+	cout<<"æ˜¯å¦è¦ç»§ç»­ï¼Ÿ(y/n)"<<endl;
 	char c;
 	cin>>c;
 	if(c=='y')
@@ -303,7 +305,7 @@ bool SegmentMethod(){
 int main()
 {
 	int choice;
-	cout<<"ÇëÊäÈëÒªÑ¡ÔñµÄµØÖ·±ä»¯·½Ê½£º£¨0-·ÖÒ³£»1-·Ö¶Î£©"<<endl;
+	cout<<"è¯·è¾“å…¥è¦é€‰æ‹©çš„åœ°å€å˜åŒ–æ–¹å¼ï¼šï¼ˆ0-åˆ†é¡µï¼›1-åˆ†æ®µï¼‰"<<endl;
 	cin>>choice;
 	if(choice==0)
 	{
